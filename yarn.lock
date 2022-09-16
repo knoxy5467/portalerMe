@@ -6105,13 +6105,20 @@ cytoscape-cose-bilkent@^4.1.0:
   dependencies:
     cose-base "^1.0.0"
 
-cytoscape@3.15.0:
-  version "3.15.0"
-  resolved "https://registry.yarnpkg.com/cytoscape/-/cytoscape-3.15.0.tgz#213871e5efc0aae12abc0287421934feb706db42"
-  integrity sha512-zpEcCYAVic5TKpZ9NpyNqK5Dfpv3/cSbVR/Ksb8geiRkL7oeG2iJzi/NMCKFgrFLlOyYtfaltKKqfVdVGHpcXg==
+cytoscape-elk@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/cytoscape-elk/-/cytoscape-elk-2.0.2.tgz#dc8cf9b3ac3c9dfb16a67273f2ef6fd62d676cfc"
+  integrity sha512-P47PY63YECC42JVJm/PozKDZMLmx/BPGEhmfAEQzMRAz03DC09CsGrMC4TM4ggErnI8uPMzmI42F1oP6Zu4iUw==
+  dependencies:
+    elkjs "^0.7.0"
+
+cytoscape@^3.2.0:
+  version "3.22.1"
+  resolved "https://registry.yarnpkg.com/cytoscape/-/cytoscape-3.22.1.tgz#bf9374193ce1d4dda31ef26a8997311a19e6077b"
+  integrity sha512-+wMWCXI+c6h7xhh0BQpttOPO7zIB7z6KyDd7D+8AkRhE9E6csXNnV5inBkdo2mxbBoll1jePVxXHqxA2J5cAog==
   dependencies:
     heap "^0.2.6"
-    lodash.debounce "^4.0.8"
+    lodash "^4.17.21"
 
 cytoscape@^3.2.19:
   version "3.18.1"
@@ -6775,6 +6782,11 @@ electron-to-chromium@^1.3.378, electron-to-chromium@^1.3.649:
   version "1.3.707"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.707.tgz#71386d0ceca6727835c33ba31f507f6824d18c35"
   integrity sha512-BqddgxNPrcWnbDdJw7SzXVzPmp+oiyjVrc7tkQVaznPGSS9SKZatw6qxoP857M+HbOyyqJQwYQtsuFIMSTNSZA==
+
+elkjs@^0.7.0:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/elkjs/-/elkjs-0.7.1.tgz#4751c5e918a4988139baf7f214e010aea22de969"
+  integrity sha512-lD86RWdh480/UuRoHhRcnv2IMkIcK6yMDEuT8TPBIbO3db4HfnVF+1lgYdQi99Ck0yb+lg5Eb46JCHI5uOsmAw==
 
 elliptic@^6.5.3:
   version "6.5.4"
@@ -11776,7 +11788,7 @@ lodash.without@^4.4.0:
   resolved "https://registry.yarnpkg.com/lodash.without/-/lodash.without-4.4.0.tgz#3cd4574a00b67bae373a94b748772640507b7aac"
   integrity sha1-PNRXSgC2e643OpS3SHcmQFB7eqw=
 
-"lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@~4.17.10:
+"lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@~4.17.10:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -18404,6 +18416,11 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   integrity sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA==
   dependencies:
     minimalistic-assert "^1.0.0"
+
+web-worker@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/web-worker/-/web-worker-1.2.0.tgz#5d85a04a7fbc1e7db58f66595d7a3ac7c9c180da"
+  integrity sha512-PgF341avzqyx60neE9DD+XS26MMNMoUQRz9NOZwW32nPQrF6p77f1htcnjBSEV8BGMKZ16choqUG4hyI0Hx7mA==
 
 webidl-conversions@^3.0.0:
   version "3.0.1"

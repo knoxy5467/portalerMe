@@ -2,7 +2,7 @@ import { CytoscapeOptions } from 'cytoscape'
 
 const defaultSettings: CytoscapeOptions = {
   pan: { x: 0, y: 0 },
-  minZoom: 0.15,
+  minZoom: 0.05,
   maxZoom: 1.75,
   zoomingEnabled: true,
   userZoomingEnabled: true,
@@ -10,37 +10,36 @@ const defaultSettings: CytoscapeOptions = {
   userPanningEnabled: true,
   boxSelectionEnabled: true,
   selectionType: 'single',
-  touchTapThreshold: 8,
-  desktopTapThreshold: 4,
-  autolock: false,
-  autoungrabify: false,
-  autounselectify: false,
   // @ts-ignore
   layout: {
     // @ts-ignore
-    name: 'cose-bilkent',
+    name: 'fcose',
+    // @ts-ignore
     nodeDimensionsIncludeLabels: true,
     // @ts-ignore
-    idealEdgeLength: 125,
+    idealEdgeLength: 200,
+    // @ts-ignore
     nestingFactor: 0.5,
+    // @ts-ignore
     fit: true,
+    // @ts-ignore
+    randomize: true,
+    // @ts-ignore
     padding: 42,
+    // @ts-ignore
     animationDuration: 250,
     // @ts-ignore
     tilingPaddingVertical: 20,
     // @ts-ignore
     tilingPaddingHorizontal: 20,
     // @ts-ignore
-    nodeRepulsion: 7000,
+    nodeRepulsion: 4194304,
+    // @ts-ignore
+    numIter: 2097152,
+    uniformNodeDimensions: true,
+    quality: "proof",
+    gravityRangeCompound: -100.0,
   },
-  headless: false,
-  styleEnabled: true,
-  hideEdgesOnViewport: false,
-  textureOnViewport: false,
-  motionBlur: false,
-  motionBlurOpacity: 0.2,
-  pixelRatio: 'auto',
-  wheelSensitivity: 0.5,
 }
 
 export default defaultSettings

@@ -105,6 +105,19 @@ const MappingBar = () => {
     [from, zones]
   )
 
+  const [time, setTime] = useState(new Date())
+  useEffect(() => {
+    setInterval(() => {
+      setTime(new Date())
+    }, 1000)
+  }, [])
+  const UTChours =
+    time.getUTCHours() < 10 ? '0' + time.getUTCHours() : time.getUTCHours() + ''
+  const UTCminutes =
+    time.getUTCMinutes() < 10 ? '0' + time.getUTCMinutes() : time.getUTCMinutes() + ''
+  const UTCseconds =
+    time.getUTCSeconds() < 10 ? '0' + time.getUTCSeconds() : time.getUTCSeconds() + ''
+
   useEffect(() => {
     if (!fromId) {
       setFrom(clone(DEFAULT_ZONE))
@@ -286,6 +299,13 @@ const MappingBar = () => {
             >
               Create Connection
             </Button>
+          </FormControl>
+        </div>
+        <div className={styles.row}>
+          <FormControl fullWidth>
+            <FormLabel component="legend">
+              UTC time: {UTChours}:{UTCminutes}:{UTCseconds}
+            </FormLabel>
           </FormControl>
         </div>
       </div>

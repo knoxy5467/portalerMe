@@ -16,7 +16,7 @@ export type ZoneColor =
 export type Tier = 'I' | 'II' | 'III' | 'IV' | 'V' | 'VI' | 'VII' | 'VIII'
 
 // 0 is a royal to royal connection
-export type PortalSize = 0 | 2 | 7 | 20
+export type PortalSize = 0 | 2 | 7 | 20 | 4200
 export interface Resource {
   name: string
   tier: string

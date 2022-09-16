@@ -20,6 +20,7 @@
     "build:bot": "cd packages/discord-bot && yarn build",
     "build:binetl": "cd packages/bin-etl && yarn build",
     "build:front": "cd packages/frontend && yarn build",
+    "rebuild:front": "cd packages/frontend && rimraf build && yarn build",
     "build:homepage": "cd packages/homepage && yarn build",
     "start:api": "cd packages/api-server && yarn start",
     "start:bot": "cd packages/discord-bot && yarn start",

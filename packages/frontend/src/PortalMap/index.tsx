@@ -3,13 +3,16 @@ import cytoscape, {
   EdgeSingular,
   EventObject,
 } from 'cytoscape'
+///import elk from 'cytoscape-elk'
 import COSEBilkent from 'cytoscape-cose-bilkent'
+import fcose from 'cytoscape-fcose'
 import isEqual from 'lodash/isEqual'
 import { Duration } from 'luxon'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { PortalSize, Zone } from '@portaler/types'
+//@ts-ignore
 import { hashKey } from '@portaler/utils'
 import useEventListener from '@use-it/event-listener'
 
@@ -27,7 +30,7 @@ import graphStyle from './graphStyle'
 import { getZoneColor, portalSizeToColor } from './mapStyle'
 import styles from './styles.module.scss'
 
-cytoscape.use(COSEBilkent)
+cytoscape.use(fcose)
 
 interface CytoMapElement {
   added: boolean
@@ -347,10 +350,12 @@ const PortalMap = () => {
       }
 
       if (updated) {
-        const layout =
-          oldScore.current === -1 ? defaultSettings.layout : updateLayout
+        const layout = oldScore.current === -1 ? defaultSettings.layout : updateLayout
 
         cy.current.layout(layout).run()
+        for (let i = 0; i < 3; i++) {
+          cy.current.layout(defaultSettings.layout).run()
+        }
       }
 
       oldScore.current = score
@@ -370,7 +375,9 @@ const PortalMap = () => {
   }, [centerZone, handleCenter])
 
   const reloadMap = useCallback(() => {
-    cy.current.layout(defaultSettings.layout).run()
+    for (let i = 0; i < 3; i++) {
+      cy.current.layout(defaultSettings.layout).run()
+    }
   }, [])
 
   return (

@@ -5,6 +5,7 @@ export const portalSizeToColor = {
   2: '#52b202',
   7: '#00b0ff',
   20: '#ffc400',
+  4200: '#ff3838',
 }
 
 export const getZoneColor = (

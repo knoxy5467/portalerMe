@@ -95,8 +95,8 @@ You can use any text editor you like. If you are using Debian you will most like
 If you don't have anything but `Vim` installed - you can either use google-fu and learn how to use it or just `apt-get install -y nano` to have `nano` installed
 
 ```Shell
-cp .env.example .env.example.backup
-nano .env.example
+cp .env .env.backup
+nano .env
 ```
 
 Edit those values:
@@ -122,7 +122,7 @@ services:
   pgdb:
     image: postgres:13-alpine
     env_file:
-      - .env.example
+      - .env
     volumes:
       - db_data:/var/lib/postgresql/data
     networks:
@@ -130,13 +130,13 @@ services:
   rediscache:
     image: bitnami/redis:6.0
     env_file:
-      - .env.example
+      - .env
     networks:
       - portaler
   api_server:
     image: mawburn/portaler:latest
     env_file:
-      - .env.example
+      - .env
     ports:
       - '127.0.0.1:7777:4242'
     depends_on:
@@ -147,7 +147,7 @@ services:
   bin_etl:
     image: mawburn/portaler-etl:latest
     env_file:
-      - .env.example
+      - .env
     depends_on:
       - pgdb
       - rediscache
@@ -200,7 +200,7 @@ cd /usr/local/etc/docker-portaler/portaler-core/packages/frontend
 Rename `.env.example` to `.env`:
 
 ```Shell
-mv .env.example .env
+mv .env .env
 ```
 
 Install pm2 and make it autostart your webserver:
@@ -303,7 +303,7 @@ Now that you have those values you can set-up your docker containers:
 
 ```Shell
 cd /usr/local/etc/docker-portaler/portaler-core/docker
-nano .env.example
+nano .env
 ```
 
 You need to edit those values:
@@ -346,7 +346,7 @@ services:
   pgdb:
     image: postgres:13-alpine
     env_file:
-      - .env.example
+      - .env
     volumes:
       - db_data:/var/lib/postgresql/data
     networks:
@@ -354,13 +354,13 @@ services:
   rediscache:
     image: bitnami/redis:6.0
     env_file:
-      - .env.example
+      - .env
     networks:
       - portaler
   discord_bot:
     image: mawburn/portaler-bot:latest
     env_file:
-      - .env.example
+      - .env
     environment:
       - API_URL=https://api_server/
     depends_on:
@@ -371,7 +371,7 @@ services:
   api_server:
     image: mawburn/portaler:latest
     env_file:
-      - .env.example
+      - .env
     ports:
       - '127.0.0.1:7777:4242'
     depends_on:
@@ -382,7 +382,7 @@ services:
   bin_etl:
     image: mawburn/portaler-etl:latest
     env_file:
-      - .env.example
+      - .env
     depends_on:
       - pgdb
       - rediscache

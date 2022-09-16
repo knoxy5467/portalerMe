@@ -31,7 +31,7 @@ const setupServer = async (server: Guild) => {
     const discordRoles = await server.roles.cache
 
     const hasRole = discordRoles.find(
-      (r) => r.id === dbServer?.roles[0].discordRoleId
+      (r) => r.name === dbServer?.roles[0].discordRoleId
     )
 
     const role =

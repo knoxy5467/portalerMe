@@ -20,6 +20,12 @@ const graphStyle = [
       color: 'red',
     },
   },
+  {
+    selector: 'edge',
+    style: {
+      'curve-style': 'unbundled-bezier',
+    },
+  },
 ]
 
 export default graphStyle

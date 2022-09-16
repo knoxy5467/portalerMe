@@ -6,7 +6,9 @@ import { animated, useSpring } from 'react-spring'
 import { IconButton, makeStyles, Tab, Tabs, Theme } from '@material-ui/core'
 import AddLocationIcon from '@material-ui/icons/AddLocation'
 import HideIcon from '@material-ui/icons/FirstPage'
+import FindPathIcon from '@material-ui/icons/CompareArrows'
 import HelpIcon from '@material-ui/icons/HelpOutline'
+import TopWalkersIcon from '@material-ui/icons/BarChart'
 import InfoIcon from '@material-ui/icons/InfoOutlined'
 import SettingsIcon from '@material-ui/icons/Settings'
 
@@ -15,6 +17,8 @@ import { portalerSmall } from '../common/images'
 import mistWalker from '../common/utils/mistWalker'
 import LoginButton from '../LoginButton'
 import MapInfo from '../MapInfo'
+import TopWalkers from '../TopWalkers'
+import FindPath from '../FindPath'
 import PortalForm from '../PortalForm'
 import { RootState } from '../reducers'
 import { SidebarActionTypes } from '../reducers/sideBarReducer'
@@ -22,28 +26,21 @@ import UserSettings from '../UserSettings'
 import Help from './Help'
 import styles from './styles.module.scss'
 
-type TabOpts = 'form' | 'info' | 'help' | 'settings'
+type TabOpts = 'form' | 'find' | 'info' | 'top' | 'help' | 'settings'
 
 const tabMap = (tabVal: number): TabOpts => {
-  if (mistWalker.isWalker && !mistWalker.showSidebar) {
-    switch (tabVal) {
-      case 0:
-        return 'info'
-      case 1:
-        return 'help'
-      case 2:
-        return 'settings'
-    }
-  }
-
   switch (tabVal) {
     case 0:
       return 'form'
     case 1:
-      return 'info'
+      return 'find'
     case 2:
-      return 'help'
+      return 'info'
     case 3:
+      return 'top'
+    case 4:
+      return 'help'
+    case 5:
       return 'settings'
     default:
       return 'form'
@@ -51,26 +48,19 @@ const tabMap = (tabVal: number): TabOpts => {
 }
 
 const getTabVal = (tabOpt: TabOpts): number => {
-  if (mistWalker.isWalker && !mistWalker.showSidebar) {
-    switch (tabOpt) {
-      case 'info':
-        return 0
-      case 'help':
-        return 1
-      case 'settings':
-        return 2
-    }
-  }
-
   switch (tabOpt) {
     case 'form':
       return 0
-    case 'info':
+    case 'find':
       return 1
-    case 'help':
+    case 'info':
       return 2
-    case 'settings':
+    case 'top':
       return 3
+    case 'help':
+      return 4
+    case 'settings':
+      return 5
     default:
       return 0
   }
@@ -150,7 +140,9 @@ const SideBar = () => {
           })}
         >
           {tabValue === 'form' && <PortalForm />}
+          {tabValue === 'find' && <FindPath />}
           {tabValue === 'info' && <MapInfo />}
+          {tabValue === 'top' && <TopWalkers />}
           {tabValue === 'help' && <Help />}
           {tabValue === 'settings' && <UserSettings />}
         </animated.div>
@@ -164,19 +156,29 @@ const SideBar = () => {
             aria-label="panel options"
             className={classes.tabs}
           >
-            {(!mistWalker.isWalker || mistWalker.showSidebar) && (
-              <Tab
-                className={classes.tab}
-                icon={<AddLocationIcon />}
-                aria-label="Add location"
-                title="Add location"
-              />
-            )}
+            <Tab
+              className={classes.tab}
+              icon={<AddLocationIcon />}
+              aria-label="Add location"
+              title="Add location"
+            />
+            <Tab
+              className={classes.tab}
+              icon={<FindPathIcon />}
+              aria-label="Find Path"
+              title="Find Path"
+            />
             <Tab
               className={classes.tab}
               icon={<InfoIcon />}
               aria-label="Zone Info"
               title="Zone Info"
+            />
+            <Tab
+              className={classes.tab}
+              icon={<TopWalkersIcon />}
+              aria-label="Top of Mist Walkers"
+              title="Top of Mist Walkers"
             />
             <Tab
               className={classes.tab}
