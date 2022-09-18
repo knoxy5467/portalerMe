@@ -12,13 +12,13 @@ export enum ConfigActionTypes {
 interface ConfigAction {
   type: ConfigActionTypes
   token?: string
-  isPublic?: boolean
+  isPublic: true
   discordUrl?: string
 }
 
 export interface ConfigState {
   token: string | null
-  isPublic: boolean
+  isPublic: true
   discordUrl: string | null
 }
 
@@ -38,7 +38,7 @@ export const tokenStore = (): string | null => {
 
 const initialState: ConfigState = {
   token: tokenStore(),
-  isPublic: false,
+  isPublic: true,
   discordUrl: null,
 }
 
@@ -62,7 +62,7 @@ const configReducer: Reducer<any, ConfigAction> = (
     case ConfigActionTypes.SETCONFIG:
       return {
         ...state,
-        isPublic: !!action.isPublic,
+        isPublic: true,
         discordUrl: action.discordUrl || null,
       }
     default:

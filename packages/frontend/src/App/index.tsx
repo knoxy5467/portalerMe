@@ -3,7 +3,6 @@ import React from 'react'
 import { CssBaseline, ThemeProvider } from '@material-ui/core'
 
 import mistWalker from '../common/utils/mistWalker'
-import Patreon from '../Patreon'
 import SideBar from '../Sidebar'
 import Footer from './Footer'
 import useGetConfig from './hooks/useGetConfig'
