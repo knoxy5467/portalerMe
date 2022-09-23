@@ -1,6 +1,6 @@
 import { Guild } from 'discord.js'
 
-import { IUserModel } from '@portaler/data-models/out/models/User'
+import { IUserModel } from '@portaler/data-models'
 
 import config from '../../config'
 import { db, redis } from '../../db'

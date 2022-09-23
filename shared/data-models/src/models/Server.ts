@@ -49,7 +49,7 @@ export default class ServerModel extends BaseModel {
       [subdomain]
     )
 
-    return dbRes.rowCount > 0 ? dbRes.rows[0].is_public : false
+    return dbRes.rowCount > 0 ? dbRes.rows[0].is_public : true
   }
 
   getServer = async (id: number | string): Promise<IServerModel | null> => {
@@ -85,7 +85,7 @@ export default class ServerModel extends BaseModel {
         discordName: fRow.discord_name,
         subdomain: fRow.subdomain,
         createdOn: fRow.created_on,
-        isPublic: fRow.is_public,
+        isPublic: true,
         discordUrl: fRow.discord_url,
         roles: dbResServer.rows.map((r) => ({
           id: r.role_id,

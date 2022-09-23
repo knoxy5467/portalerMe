@@ -114,9 +114,13 @@ const MappingBar = () => {
   const UTChours =
     time.getUTCHours() < 10 ? '0' + time.getUTCHours() : time.getUTCHours() + ''
   const UTCminutes =
-    time.getUTCMinutes() < 10 ? '0' + time.getUTCMinutes() : time.getUTCMinutes() + ''
+    time.getUTCMinutes() < 10
+      ? '0' + time.getUTCMinutes()
+      : time.getUTCMinutes() + ''
   const UTCseconds =
-    time.getUTCSeconds() < 10 ? '0' + time.getUTCSeconds() : time.getUTCSeconds() + ''
+    time.getUTCSeconds() < 10
+      ? '0' + time.getUTCSeconds()
+      : time.getUTCSeconds() + ''
 
   useEffect(() => {
     if (!fromId) {

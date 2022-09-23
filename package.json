@@ -38,6 +38,7 @@
     "shared/*"
   ],
   "devDependencies": {
+    "@types/express-serve-static-core": "4.17.30",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
     "concurrently": "^5.3.0",

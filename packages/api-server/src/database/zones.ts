@@ -23,9 +23,10 @@ export const getZoneMeta = async (id: number): Promise<Zone> => {
   }
 
   try {
-    const zoneRes: Promise<
-      QueryResult<IZoneModel>
-    > = db.dbQuery(`SELECT * FROM zones WHERE id = $1;`, [id])
+    const zoneRes: Promise<QueryResult<IZoneModel>> = db.dbQuery(
+      `SELECT * FROM zones WHERE id = $1;`,
+      [id]
+    )
 
     const resources = db.dbQuery(
       `

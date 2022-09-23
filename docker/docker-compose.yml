@@ -31,7 +31,7 @@ services:
     networks:
       - portaler
   api_server:
-    image: mawburn/portaler:latest
+    image: aut1sto/portaler:latest
     env_file:
       - .env.example
     ports:

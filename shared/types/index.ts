@@ -11,6 +11,7 @@ export type ZoneColor =
   | 'road'
   | 'road-ho'
   | 'city'
+  | 'city-portal'
   | 'home'
 
 export type Tier = 'I' | 'II' | 'III' | 'IV' | 'V' | 'VI' | 'VII' | 'VIII'

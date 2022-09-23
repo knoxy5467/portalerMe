@@ -3,8 +3,6 @@ import React from 'react'
 import { discordLogo, githubLogo, patreonLogo } from '../../common/images'
 import styles from './styles.module.scss'
 
-// import Twitch from './Twitch'
-
 const Footer = () => (
   <footer className={styles.footer}>
     <div className={styles.left}>

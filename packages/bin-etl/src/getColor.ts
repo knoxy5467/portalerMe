@@ -1,8 +1,12 @@
 import { ZoneColor } from '@portaler/types'
 
 const getColor = (type: string): ZoneColor => {
-  if (type.includes('PLAYERCITY')) {
+  if (type.includes('PLAYERCITY_SAFEAREA')) {
     return 'city'
+  }
+
+  if (type.includes('PLAYERCITY_BLACK_PORTALCITY')) {
+    return 'city-portal'
   }
 
   if (type.includes('TUNNEL')) {

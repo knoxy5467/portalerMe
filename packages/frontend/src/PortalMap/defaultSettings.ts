@@ -37,7 +37,7 @@ const defaultSettings: CytoscapeOptions = {
     // @ts-ignore
     numIter: 2097152,
     uniformNodeDimensions: true,
-    quality: "proof",
+    quality: 'proof',
     gravityRangeCompound: -100.0,
   },
 }

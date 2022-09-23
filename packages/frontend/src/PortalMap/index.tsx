@@ -60,6 +60,8 @@ const getShape = (zone: Zone): string => {
       return 'pentagon'
     case 'city':
       return 'star'
+    case 'city-portal':
+      return 'star'
     default:
       return ''
   }
@@ -350,7 +352,8 @@ const PortalMap = () => {
       }
 
       if (updated) {
-        const layout = oldScore.current === -1 ? defaultSettings.layout : updateLayout
+        const layout =
+          oldScore.current === -1 ? defaultSettings.layout : updateLayout
 
         cy.current.layout(layout).run()
         for (let i = 0; i < 3; i++) {

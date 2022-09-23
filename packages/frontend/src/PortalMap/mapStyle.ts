@@ -34,7 +34,10 @@ export const getZoneColor = (
     case 'blue':
       return '#3d679c'
     case 'city':
-    default:
       return '#42a5f5'
+    case 'city-portal':
+      return '#1b1a29'
+    default:
+      return '#15ff00'
   }
 }
