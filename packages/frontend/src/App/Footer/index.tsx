@@ -30,7 +30,7 @@ const Footer = () => (
       </div>
       <div className={styles.discord}>
         <a
-          href="https://discord.gg/YhttJj32gj"
+          href="https://discord.gg/9RN7hCbTNH"
           target="_blank"
           rel="noopener noreferrer"
         >

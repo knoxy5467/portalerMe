@@ -152,7 +152,7 @@ const Help: FC<HelpProps> = () => (
     <div className={styles.bottom}>
       If you have more questions
       <a
-        href="https://discord.gg/YhttJj32gj"
+        href="https://discord.gg/9RN7hCbTNH"
         target="_blank"
         rel="noopener noreferrer"
       >
