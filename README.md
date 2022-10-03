@@ -8,7 +8,7 @@
 This repo is Modern Portaler repo from developer from Portaler Community.
 
 Mist Walkers from Portaler Community discord costantly(thx to them) populates public avalon map, to login you need to get Member role in Portaler Community discord server:
-https://discord.gg/YhttJj32gj
+https://discord.gg/9RN7hCbTNH
 
 ----
 
