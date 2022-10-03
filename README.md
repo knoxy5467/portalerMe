@@ -2,7 +2,7 @@
 # Portaler is alive!
 
 <p align="center">
-  <img alt="Portaler logo" width="128px" height="128px" src="https://github.com/aut1sto/portaler-core/blob/main/assets/logo/logo.png" />
+  <img alt="Portaler logo" width="512px" height="512px" src="https://github.com/aut1sto/portaler-core/blob/main/assets/logo/logo-512x512.png" />
 </p>
 
 This repo is Modern Portaler repo from developer from Portaler Community.
