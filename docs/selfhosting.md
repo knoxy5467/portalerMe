@@ -8,6 +8,8 @@ In case you'll encounter an error during installation you can usually google it 
 
 **There is also a [WIP containerized version](https://github.com/Logoffski/portaler-core/tree/docker_test/docker) that is much easier to deploy, but it is somewhat finicky and doesn't leave much room for error. If you have a good understanding on how selfhosting works you can try it instead.**
 
+(goes to Logoffski, not me ^)
+
 ## Requirements
 
 **If you want to use Portaler locally on your PC**: Any kind of Linux VM on your network where you have root privileges and can access the terminal. The simplest solution is using something like VirtualBox (google how to do that, it is easy)
@@ -78,6 +80,12 @@ cd /usr/local/etc/docker-portaler/portaler-core
 yarn install
 ```
 
+And shared modules:
+
+```Shell
+yarn build:shared
+```
+
 Now you need to decide if you are going to use it locally or publicly. Local version has no auth and is accessible only from your local network. Public version has discord OAuth and can be accessed by anyone with the right role on your discord server. While you can technically make the local version accessible from the internet that is not advised and will not be covered by this guide.
 
 You don't need to do both options so pick only the one you need.
@@ -123,6 +131,7 @@ services:
     image: postgres:13-alpine
     env_file:
       - .env
+    restart: unless-stopped
     volumes:
       - db_data:/var/lib/postgresql/data
     networks:
@@ -131,12 +140,14 @@ services:
     image: bitnami/redis:6.0
     env_file:
       - .env
+    restart: unless-stopped
     networks:
       - portaler
   api_server:
-    image: mawburn/portaler:latest
+    image: aut1sto/portaler:stable
     env_file:
       - .env
+    restart: unless-stopped
     ports:
       - '127.0.0.1:7777:4242'
     depends_on:
@@ -145,9 +156,10 @@ services:
     networks:
       - portaler
   bin_etl:
-    image: mawburn/portaler-etl:latest
+    image: aut1sto/portaler-etl:stable
     env_file:
       - .env
+    restart: unless-stopped
     depends_on:
       - pgdb
       - rediscache
@@ -330,76 +342,6 @@ Leave everything else as is.
 
 **Important: do NOT invite your bot to your server before you are done setting up docker containers. The bot has to join you discord server with api already running. If your bot is already on your server - kick it.**
 
-While we are technically done with this part i would also suggest editing `docker-compose.yml` to prevent unnecessarily exposing ports on your system to the Internet.
-This is especially important if you are using a VPS and not doing this part can be considered a huge security risk.
-
-```Shell
-nano docker-compose.yml
-```
-
-Modify it to be like this:
-
-```yml
-version: '3.7'
-
-services:
-  pgdb:
-    image: postgres:13-alpine
-    env_file:
-      - .env
-    volumes:
-      - db_data:/var/lib/postgresql/data
-    networks:
-      - portaler
-  rediscache:
-    image: bitnami/redis:6.0
-    env_file:
-      - .env
-    networks:
-      - portaler
-  discord_bot:
-    image: mawburn/portaler-bot:latest
-    env_file:
-      - .env
-    environment:
-      - API_URL=https://api_server/
-    depends_on:
-      - pgdb
-      - rediscache
-    networks:
-      - portaler
-  api_server:
-    image: mawburn/portaler:latest
-    env_file:
-      - .env
-    ports:
-      - '127.0.0.1:7777:4242'
-    depends_on:
-      - pgdb
-      - rediscache
-    networks:
-      - portaler
-  bin_etl:
-    image: mawburn/portaler-etl:latest
-    env_file:
-      - .env
-    depends_on:
-      - pgdb
-      - rediscache
-      - api_server
-    networks:
-      - portaler
-
-networks:
-  portaler:
-    driver: 'bridge'
-
-volumes:
-  db_data: {}
-```
-
-`ctrl-x` to exit, don't forget to save your changes.
-
 When you are done editing the files - start the containers
 
 ```Shell
@@ -418,12 +360,6 @@ In this list look for **container id** of the container with bin_etl (most likel
 
 ```Shell
 docker restart your_bin_etl_containerid
-```
-
-Make all containers autostart if you reboot your VM:
-
-```Shell
-docker update --restart unless-stopped $(docker ps -q)
 ```
 
 Now you can invite your bot to your server:
@@ -455,4 +391,97 @@ Do `curl -H "Authorization: Bearer youradminkey" http://localhost/api/admin/list
 
 Try logging in again. This time everything should be working fine.
 
-The next step would be to enable SSL but i'll leave this up to you - plenty of guides on the internet how to do that using certbot.
+After first login you will see no locations at zone select, you need to clear rediscache for zones to appear:
+
+```Shell
+docker exec your_rediscache_containerid redis-cli -a redis flushall
+docker restart your_api_server_containerid
+docker restart your_bin_etl_containerid
+```
+
+### How to set up SSL
+
+After your portaler instance done you can setup SSL(https://) for your portaler. It's not necessarily but recommended.
+
+Setup certbot to gen SSL certificates:
+
+```Shell
+apt install -y snapd
+snap install core; sudo snap refresh core
+snap install --classic certbot
+ln -s /snap/bin/certbot /usr/bin/certbot
+```
+
+After installing is done you need to gen certificates for your domain:
+
+```Shell
+certbot certonly --nginx
+```
+
+You also need dhparams for SSL:
+
+```Shell
+mkdir /etc/letsencrypt/dhparams
+openssl dhparam -out /etc/letsencrypt/dhparams/dhparam.pem 2048
+```
+
+Now you need to edit your portaler.conf file:
+
+```Shell
+nano /etc/nginx/conf.d/portaler.conf
+```
+(or vim, up to you)
+
+Paste this config(change YOURSUBDOMAIN and YOURDOMAIN with data from your instance):
+
+```nginx
+server {
+  listen 443 ssl;
+  listen [::]:443 ssl;
+
+  server_name YOURSUBDOMAIN.portaler.org;
+
+  ssl_certificate         /etc/letsencrypt/live/YOURSUBDOMAIN.YOURDOMAIN/fullchain.pem;
+  ssl_certificate_key     /etc/letsencrypt/live/YOURSUBDOMAIN.YOURSUBDOMAIN/privkey.pem;
+  ssl_trusted_certificate /etc/letsencrypt/live/YOURSUBDOMAIN.YOURSUBDOMAIN/chain.pem;
+
+  ssl_dhparam /etc/letsencrypt/dhparams/dhparam.pem;
+
+  location /api/ {
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_pass      http://localhost:7777/api/;
+  }
+
+  location / {
+    root   /usr/local/etc/docker-portaler/portaler-core/packages/frontend/build/;
+    index  index.html index.htm;
+    try_files $uri $uri/ /index.html;
+  }
+
+  error_page   500 502 503 504  /50x.html;
+
+  location = /50x.html {
+    root   /usr/share/nginx/html;
+  }
+}
+server {
+  listen 80;
+  server_name YOURSUBDOMAIN.YOURSUBDOMAIN;
+  return 301 https://YOURSUBDOMAIN.YOURSUBDOMAIN$request_uri;
+}
+```
+Also, you need to change discord redirect link in .env.example and in discord bot settings from **http://yoursubdomain.yourdomain:80/api/auth/callback** to **https://yoursubdomain.yourdomain:443/api/auth/callback**.
+
+Finally, we can restart nginx:
+
+```Shell
+systemctl restart nginx
+```
+
+And your https should work!
+
+If you have any questions or something isn't working feel free to ask these questions in Portaler Dev discord server:
+https://discord.com/invite/3GwNSgvR5g

@@ -5,6 +5,7 @@ services:
     image: postgres:13-alpine
     env_file:
       - .env.example
+    restart: unless-stopped
     ports:
       - '5432:5432'
     volumes:
@@ -15,6 +16,7 @@ services:
     image: bitnami/redis:6.0
     env_file:
       - .env.example
+    restart: unless-stopped
     ports:
       - '6379:6379'
     networks:
@@ -23,6 +25,7 @@ services:
     image: mawburn/portaler-bot:latest
     env_file:
       - .env.example
+    restart: unless-stopped
     environment:
       - API_URL=https://api_server/
     depends_on:
@@ -34,6 +37,7 @@ services:
     image: aut1sto/portaler:latest
     env_file:
       - .env.example
+    restart: unless-stopped
     ports:
       - '7777:4242'
     depends_on:
@@ -42,9 +46,10 @@ services:
     networks:
       - portaler
   bin_etl:
-    image: mawburn/portaler-etl:latest
+    image: aut1sto/portaler-etl:stable
     env_file:
       - .env.example
+    restart: unless-stopped
     depends_on:
       - pgdb
       - rediscache
