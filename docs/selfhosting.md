@@ -14,9 +14,9 @@ In case you'll encounter an error during installation you can usually google it 
 
 **If you want to use Portaler locally on your PC**: Any kind of Linux VM on your network where you have root privileges and can access the terminal. The simplest solution is using something like VirtualBox (google how to do that, it is easy)
 
-**If you want to use Portaler publicly (host)**: Same as using it locally but you will also need a public routable(preferably static) ip-address and a domain name you own. You can (and probably should) also use a VPS instead of a VM on your PC for that.
+**If you want to use Portaler publicly (host)**: Same as using it locally, but you will also need a public routable(preferably static) ip-address and a domain name you own. You can (and probably should) also use a VPS instead of a VM on your PC for that.
 
-I am using **Debian 9** as my OS. If you use some other Linux distro you will need to google how to install all the packages by yourself, but otherwise that should not be a problem.
+This guide was written for Ubuntu 20.04, so I suggest you to use it.
 
 ## Steps for both local and public versions
 
@@ -28,7 +28,7 @@ When that is done, connect to your server using ssh or, if you can access the gu
 
 Root yourself by using `su` (or `sudo -i` if you have sudo installed)
 
-Let's begin by installing some of the necessary packages you will need.
+Let's begin by installing some necessary packages you will need.
 
 Install git and curl:
 
@@ -49,10 +49,11 @@ npm install --global yarn
 Install docker and docker-compose:
 
 ```Shell
-apt-get install -y apt-transport-https ca-certificates gnupg lsb-release
-curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
-apt-get update
+sudo apt-get install ca-certificates curl gnupg lsb-release
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
 apt-get install -y docker-ce docker-ce-cli containerd.io
 curl -L "https://github.com/docker/compose/releases/download/1.28.6/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
@@ -70,7 +71,7 @@ cd /usr/local/etc/docker-portaler
 Clone the whole portaler repository:
 
 ```Shell
-git clone https://github.com/Portaler-Zone/portaler-core
+git clone https://github.com/aut1sto/portaler-core
 ```
 
 Install all yarn dependencies:
