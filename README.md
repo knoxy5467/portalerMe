@@ -1,29 +1,16 @@
 
-This repo is not actively maintained. I was hoping some of the community could take it over, but nobody has really stepped forward. It'll remain open source.
+# Portaler is alive!
 
-If you would like to continue development or deploying this, feel free to fork it.
+<p align="center">
+  <img alt="Portaler logo" width="128px" height="128px" src="https://github.com/aut1sto/portaler-core/blob/main/assets/logo/logo.png" />
+</p>
 
-[How to fork a repo](https://www.demiplane.com/).
+This repo is Modern Portaler repo from developer from Portaler Community.
 
-Thank you all for your support.
+Mist Walkers from Portaler Community discord costantly(thx to them) populates public avalon map, to login you need to get Member role in Portaler Community discord server:
+https://discord.gg/YhttJj32gj
 
 ----
-
-# Portaler has been moved to community development
-
-<p align="center">
-  <img alt="Portaler logo" width="128px" height="128px" src="https://portaler.zone/logo.png" />
-</p>
-
-<p align="center">
-  An Albion Online Avalonian Roads shared mapping tool
-</p>
-
-<p align="center">
-  <a href="https://discord.gg/3GwNSgvR5g">
-    <img alt="discord" src="https://portaler.zone/discord.png" />
-  </a>
-</p>
 
 ## Contents
 
@@ -39,27 +26,19 @@ Portaler is a mapping tool for Avalonian Roads in Albion Online, that provides r
 The data we use to populate information is collected from [Albion Data Project](https://www.albion-online-data.com/).
 
 <p align="center">
-<a href="https://i.imgur.com/1J2Cxjh.png" target="_blank" rel="noopener nofollow noreferrer">
-  <img src="https://i.imgur.com/8YGEFEy.png" alt="Screenshot" />
+<a href="https://github.com/aut1sto/portaler-core/blob/main/assets/screenshot.png" target="_blank" rel="noopener nofollow noreferrer">
+  <img src="https://github.com/aut1sto/portaler-core/blob/main/assets/screenshot.png" alt="Screenshot" />
 </a>
 </p>
 
 ## Running
 
-There is a full [Self-hosting Guide here](./docs/selfhosting.md), but a simple version can be found below.
-
-If you would like to run the project on your own server, we provide DockerHub images and you can find a docker-compose.yml file in the [docker](/docker) folder. If you would like to just run the project, you do not need to build the docker files contained in the `./docker` folder, just simply update the `.env.example` file with your variables, the variables in the docker-compose.yml and run:
-
-```sh
-docker-compose up -d
-```
-
-To setup your .env files with keys, follow the [Github Token instructions here](./docs/devsetup#getting-a-github-access-token) and the [Discord instructions here](./docs/discord.md).
+There is a full [Self-hosting Guide here](./docs/selfhosting.md)
 
 Links to our DockerHub images:
 
-- [api-server](https://hub.docker.com/repository/docker/mawburn/portaler)
-- [bin-etl](https://hub.docker.com/repository/docker/mawburn/portaler-etl)
+- [api-server](https://hub.docker.com/repository/docker/aut1sto/portaler)
+- [bin-etl](https://hub.docker.com/repository/docker/aut1sto/portaler-etl)
 - [discord-bot](https://hub.docker.com/repository/docker/mawburn/portaler-bot)
 
 ## Development
