@@ -104,8 +104,8 @@ You can use any text editor you like. If you are using Debian you will most like
 If you don't have anything but `Vim` installed - you can either use google-fu and learn how to use it or just `apt-get install -y nano` to have `nano` installed
 
 ```Shell
-cp .env .env.backup
-nano .env
+cp .env.example .env.example.backup
+nano .env.example
 ```
 
 Edit those values:
@@ -131,7 +131,7 @@ services:
   pgdb:
     image: postgres:13-alpine
     env_file:
-      - .env
+      - .env.example
     restart: unless-stopped
     volumes:
       - db_data:/var/lib/postgresql/data
@@ -140,14 +140,14 @@ services:
   rediscache:
     image: bitnami/redis:6.0
     env_file:
-      - .env
+      - .env.example
     restart: unless-stopped
     networks:
       - portaler
   api_server:
     image: aut1sto/portaler:stable
     env_file:
-      - .env
+      - .env.example
     restart: unless-stopped
     ports:
       - '127.0.0.1:7777:4242'
@@ -159,7 +159,7 @@ services:
   bin_etl:
     image: aut1sto/portaler-etl:stable
     env_file:
-      - .env
+      - .env.example
     restart: unless-stopped
     depends_on:
       - pgdb
@@ -207,7 +207,7 @@ cd /usr/local/etc/docker-portaler/portaler-core/packages/frontend
 Rename `.env.example` to `.env`:
 
 ```Shell
-mv .env .env
+mv .env.example .env
 ```
 
 Install pm2 and make it autostart your webserver:
@@ -310,7 +310,7 @@ Now that you have those values you can set-up your docker containers:
 
 ```Shell
 cd /usr/local/etc/docker-portaler/portaler-core/docker
-nano .env
+nano .env.example
 ```
 
 You need to edit those values:
