@@ -401,7 +401,7 @@ After your portaler instance done you can setup SSL(https://) for your portaler.
 Setup certbot to gen SSL certificates:
 
 ```Shell
-apt install -y snapd
+sudo apt install -y snapd
 snap install core; sudo snap refresh core
 snap install --classic certbot
 ln -s /snap/bin/certbot /usr/bin/certbot
