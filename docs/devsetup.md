@@ -65,7 +65,7 @@ An `.env` file is simply contains variables that are usually machine wide or in 
 Each package will or should have an `.env.example` file. The TL;DR is to simply copy this file to `.env` and start filling in the blanks.
 
 ```sh
-cp .env .env
+cp .env.example .env
 ```
 
 ### Getting a Github Access Token
