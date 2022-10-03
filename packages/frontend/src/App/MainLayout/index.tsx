@@ -12,7 +12,7 @@ const MainLayout: FC = ({ children }) => {
   const sideBar = useSelector((state: RootState) => state.sideBar)
   const width = useGetWidth()
 
-  const sideBarWidth = sideBar ? 350 : 68
+  const sideBarWidth = sideBar ? 412.5 : 68
 
   const props = useSpring({
     gridTemplateColumns: `${sideBarWidth}px ${width - sideBarWidth}px`,

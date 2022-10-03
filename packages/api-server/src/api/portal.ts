@@ -20,8 +20,8 @@ const ISO_OPTS: ISOTimeOptions = {
 }
 
 const getExpireTime = (size: number, hours: number, minutes: number) => {
-  const _hours = size === 0 ? 999 : Number(hours)
-  const _minutes = size === 0 ? 999 : Number(minutes)
+  const _hours = size === 0 || size === 4200 ? 9999999 : Number(hours)
+  const _minutes = size === 0 || size === 4200 ? 9999999 : Number(minutes)
 
   return DateTime.utc()
     .plus({

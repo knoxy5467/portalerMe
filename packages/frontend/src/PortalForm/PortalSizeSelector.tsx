@@ -66,6 +66,20 @@ const RoyalButton = withStyles((theme: Theme) => ({
   },
 }))(Button)
 
+const ConstButton = withStyles((theme: Theme) => ({
+  root: {
+    color: theme.palette.getContrastText('#ff3838'),
+    backgroundColor: '#ff3838',
+    '&:hover': {
+      backgroundColor: '#ff6060',
+    },
+    '&:disabled': {
+      color: theme.palette.getContrastText('#aa2121'),
+      backgroundColor: '#aa2121',
+    },
+  },
+}))(Button)
+
 interface PortalSizeSelectorProps {
   size: PortalSize | null
   update: (size: PortalSize) => void
@@ -98,6 +112,9 @@ const PortalSizeSelector: FC<PortalSizeSelectorProps> = ({ size, update }) => {
       <RoyalButton onClick={() => handleClick(0)} disabled={size === 0}>
         Royal
       </RoyalButton>
+      <ConstButton onClick={() => handleClick(4200)} disabled={size === 4200}>
+        Const
+      </ConstButton>
     </ButtonGroup>
   )
 }

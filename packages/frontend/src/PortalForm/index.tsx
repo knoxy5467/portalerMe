@@ -24,7 +24,7 @@ import styles from './styles.module.scss'
 import useAddPortal from './useAddPortal'
 
 const portalSizeValid = (size: PortalSize | null) =>
-  size !== null && [0, 2, 7, 20].includes(size)
+  size !== null && [0, 2, 7, 20, 4200].includes(size)
 
 const formValidator = (
   from: Zone,
@@ -45,7 +45,7 @@ const formValidator = (
 
   if (portalSize === null) {
     errors.push({ fieldName: 'size', errorText: 'Select One' })
-  } else if (portalSize !== 0) {
+  } else if (portalSize !== 0 && portalSize !== 4200) {
     if (!minutes && !hours) {
       errors.push({ fieldName: 'timer', errorText: 'Insert Time' })
     }
@@ -111,12 +111,15 @@ const MappingBar = () => {
       setTime(new Date())
     }, 1000)
   }, [])
+
   const UTChours =
     time.getUTCHours() < 10 ? '0' + time.getUTCHours() : time.getUTCHours() + ''
+
   const UTCminutes =
     time.getUTCMinutes() < 10
       ? '0' + time.getUTCMinutes()
       : time.getUTCMinutes() + ''
+
   const UTCseconds =
     time.getUTCSeconds() < 10
       ? '0' + time.getUTCSeconds()
@@ -152,7 +155,7 @@ const MappingBar = () => {
   }, [size])
 
   useEffect(() => {
-    if (timeLeft && timeLeft !== oldTime.current && size !== 0) {
+    if (timeLeft && timeLeft !== oldTime.current && size !== 0 && size !== 4200) {
       const newHours = Math.floor(timeLeft / 3600)
       const newMinutes = Math.floor((timeLeft - newHours * 3600) / 60)
 
@@ -160,7 +163,7 @@ const MappingBar = () => {
       setMinutes(newMinutes)
 
       oldTime.current = timeLeft
-    } else if (!timeLeft || size === 0) {
+    } else if (!timeLeft || size === 0 || size === 4200) {
       setHours(null)
       setMinutes(null)
 
@@ -189,7 +192,7 @@ const MappingBar = () => {
           from?.name &&
           to?.name &&
           portalSizeValid(portalSize) &&
-          (hr + min > 0 || portalSize === 0)
+          (hr + min > 0 || portalSize === 0 || portalSize === 4200)
         ) {
           addPortal({
             connection: [from.name, to.name],
@@ -256,10 +259,10 @@ const MappingBar = () => {
               <TextField
                 error={!!getError('timer', errors)}
                 helperText={getError('timer', errors)}
-                disabled={portalSize === 0}
+                disabled={portalSize === 0 || portalSize === 4200}
                 id="time-hour"
                 className={cn(styles.durationField, {
-                  [styles.disabled]: portalSize === 0,
+                  [styles.disabled]: portalSize === 0 || portalSize === 4200,
                 })}
                 type="number"
                 label="Hour(s)"
@@ -272,10 +275,10 @@ const MappingBar = () => {
               <TextField
                 error={!!getError('timer', errors)}
                 helperText={getError('timer', errors)}
-                disabled={portalSize === 0}
+                disabled={portalSize === 0 || portalSize === 4200}
                 id="time-minute"
                 className={cn(styles.durationField, {
-                  [styles.disabled]: portalSize === 0,
+                  [styles.disabled]: portalSize === 0 || portalSize === 4200,
                 })}
                 type="number"
                 label="Minute(s)"

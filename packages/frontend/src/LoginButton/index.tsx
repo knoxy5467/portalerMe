@@ -5,8 +5,6 @@ import { Button, FormControl, Link, withStyles } from '@material-ui/core'
 import useConfigSelector from '../common/hooks/useConfigSelector'
 import { discordLogoWhite, portalerSmall } from '../common/images'
 import styles from './styles.module.scss'
-import {useSelector} from "react-redux";
-import {RootState} from "../reducers";
 
 const DiscordButton = withStyles(() => ({
   root: {

@@ -5,8 +5,8 @@ const getColor = (type: string): ZoneColor => {
     return 'city'
   }
 
-  if (type.includes('PLAYERCITY_BLACK_PORTALCITY')) {
-    return 'city-portal'
+  if (type.includes('PLAYERCITY_BLACK')) {
+    return 'city-black'
   }
 
   if (type.includes('TUNNEL')) {

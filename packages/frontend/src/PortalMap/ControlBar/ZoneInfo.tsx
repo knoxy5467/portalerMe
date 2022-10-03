@@ -34,8 +34,8 @@ const ZoneInfo = () => {
     <div className={styles.infoContainer}>
       <Paper variant="outlined" className={styles.zoneInfo}>
         {zone.name} {_callSign ? `(${_callSign})` : ''} -{' '}
-        <span className={styles.cap}>{color}</span>{' '}
-        {zone.color !== 'city' ? zone.tier : null}
+        <span className={styles.cap}>{color.replace('-', ' ')}</span>{' '}
+        {!zone.color.includes('city') ? zone.tier : null}
       </Paper>
     </div>
   )

@@ -93,7 +93,12 @@ const mobCountProcess = (
   isCityPortal: boolean,
   mob?: Mob | Mob[]
 ): (string | null)[] | null => {
-  if (isCity || isCityPortal || !mob || (!Array.isArray(mob) && mob.name.trim() === '')) {
+  if (
+    isCity ||
+    isCityPortal ||
+    !mob ||
+    (!Array.isArray(mob) && mob.name.trim() === '')
+  ) {
     return null
   }
 
@@ -129,9 +134,7 @@ const worldProcess = async (worldFile: FullZone[]): Promise<string[]> => {
       (z.type.startsWith('TUNNEL') ||
         z.type.startsWith('OPENPVP') ||
         z.type.startsWith('SAFEAREA') ||
-        z.type.startsWith('PLAYERCITY_SAFEAREA_0') ||
-        z.type.startsWith('PLAYERCITY_BLACK_PORTALCITY') ||
-        z.type.startsWith('PLAYERCITY_BLACK_NOFURNITURE') ||
+        z.type.startsWith('PLAYERCITY') ||
         z.type.startsWith('PASSAGE')) &&
       !z.displayname.toLowerCase().includes('debug') &&
       !z.type.includes('DUNGEON_') &&
@@ -139,6 +142,9 @@ const worldProcess = async (worldFile: FullZone[]): Promise<string[]> => {
       !z.type.includes('ARENA_') &&
       !z.type.includes('PLAYERCITY_SAFEAREA_NOFURNITURE') &&
       !z.type.includes('PLAYERCITY_BLACK_ROYAL_NOFURNITURE') &&
+      !z.type.includes('_HALL_OF_FAME') &&
+      !z.displayname.includes('Market') &&
+      !z.displayname.includes('Bank') &&
       !z.id.includes('RoadPve') &&
       !z.id.includes('ChampionsRealmLive') &&
       z.type !== 'PASSAGE_SAFEAREA'
@@ -152,8 +158,7 @@ const worldProcess = async (worldFile: FullZone[]): Promise<string[]> => {
   const zoneHashes = new Map<string, [string, string]>()
 
   zones.rows.forEach((r) => {
-    const hashStr =
-      `${r.albion_id}${r.zone_name}${r.tier}${r.zone_type}${r.color}${r.is_deep_road}`.toUpperCase()
+    const hashStr = `${r.albion_id}${r.zone_name}${r.tier}${r.zone_type}${r.color}${r.is_deep_road}`.toUpperCase()
     zoneHashes.set(r.albion_id, [hashStr, md5(hashStr)])
   })
 
@@ -190,16 +195,21 @@ const worldProcess = async (worldFile: FullZone[]): Promise<string[]> => {
       insertResources: resourceMapProcess(
         z.id,
         color === 'city',
-        color === 'city-portal',
+        color === 'city-black',
         z.distribution.resource
       ),
       insertMarkers: miniMapMarkerProcess(
         z.id,
         color === 'city',
-        color === 'city-portal',
+        color === 'city-black',
         z.minimapmarkers?.marker
       ),
-      insertMobs: mobCountProcess(z.id, color === 'city', color === 'city-portal', z.mobcounts?.mob),
+      insertMobs: mobCountProcess(
+        z.id,
+        color === 'city',
+        color === 'city-black',
+        z.mobcounts?.mob
+      ),
     }
 
     const isDeep = (color.includes('road') && z.type.includes('DEEP'))
@@ -213,8 +223,7 @@ const worldProcess = async (worldFile: FullZone[]): Promise<string[]> => {
         z.displayname
       )}', '${tier}','${fixStr(z.type)}', '${color}', ${isDeep})`
     } else {
-      const hashStr =
-        `${z.id}${z.displayname}${tier}${z.type}${color}${isDeep}`.toUpperCase()
+      const hashStr = `${z.id}${z.displayname}${tier}${z.type}${color}${isDeep}`.toUpperCase()
       const newHash = md5(hashStr)
 
       if (oldHash[1] !== newHash) {
