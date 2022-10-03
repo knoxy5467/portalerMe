@@ -5,7 +5,7 @@
   <img alt="Portaler logo" width="512px" height="512px" src="https://github.com/aut1sto/portaler-core/blob/main/assets/logo/logo-512x512.png" />
 </p>
 
-This repo is Modern Portaler repo from developer from Portaler Community.
+This repo is Modern Portaler repo of developer from Portaler Community.
 
 Mist Walkers from Portaler Community discord costantly(thx to them) populates public avalon map, to login you need to get Member role in Portaler Community discord server:
 https://discord.gg/9RN7hCbTNH
