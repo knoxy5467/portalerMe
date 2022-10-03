@@ -81,17 +81,17 @@ cd /usr/local/etc/docker-portaler/portaler-core
 yarn install
 ```
 
-And shared modules:
-
-```Shell
-yarn build:shared
-```
-
 Now you need to decide if you are going to use it locally or publicly. Local version has no auth and is accessible only from your local network. Public version has discord OAuth and can be accessed by anyone with the right role on your discord server. While you can technically make the local version accessible from the internet that is not advised and will not be covered by this guide.
 
 You don't need to do both options so pick only the one you need.
 
 ## Option 1 - Steps for local version
+
+Build shared modules:
+
+```Shell
+yarn build:shared
+```
 
 Edit `docker-compose.yml` and `.env.example`:
 
@@ -196,12 +196,6 @@ In this list look for **container id** of the container with bin_etl (most likel
 
 ```Shell
 docker restart your_bin_etl_containerid
-```
-
-Make all containers autostart if you reboot your VM:
-
-```Shell
-docker update --restart unless-stopped $(docker ps -q)
 ```
 
 Switch to the folder containing frontend files:
