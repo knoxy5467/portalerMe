@@ -34,7 +34,7 @@ services:
     networks:
       - portaler
   api_server:
-    image: aut1sto/portaler:latest
+    image: aut1sto/portaler:stable
     env_file:
       - .env.example
     restart: unless-stopped
