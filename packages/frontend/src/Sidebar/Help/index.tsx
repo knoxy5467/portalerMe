@@ -1,11 +1,10 @@
 import cn from 'clsx'
-import React, { FC } from 'react'
+import React from 'react'
 
 import SpeakIcon from '@material-ui/icons/RecordVoiceOver'
 import SettingsIcon from '@material-ui/icons/Settings'
 import WarningOutlinedIcon from '@material-ui/icons/WarningOutlined'
 
-import mistWalker from '../../common/utils/mistWalker'
 import black from './black.png'
 import blue from './blue.png'
 import city from './city.png'
@@ -20,14 +19,8 @@ import road from './road.png'
 import styles from './styles.module.scss'
 import yellow from './yellow.png'
 
-interface HelpProps {}
-
-const Help: FC<HelpProps> = () => (
-  <div
-    className={cn(styles.container, {
-      [styles.mistwalker]: mistWalker.isWalker,
-    })}
-  >
+const Help = () => (
+  <div>
     <h2>Help & Map Keys</h2>
     <h3>Map Icons</h3>
     <div className={styles.row}>
@@ -95,6 +88,17 @@ const Help: FC<HelpProps> = () => (
         <div className={cn(styles.conn, styles.twenty)} />
       </div>
       <div className={styles.col}>20 Person Portal</div>
+    </div>
+    <div className={styles.row}>
+      <div className={styles.col}>
+        <div className={cn(styles.conn, styles.const)} />
+      </div>
+      <div className={styles.col}>Constant Connection</div>
+    </div>
+    <div className={styles.row}>
+      <em>
+        Constant connections never deletes from map, used to connect cities with surround locs
+      </em>
     </div>
     <div className={styles.row}>
       <div className={styles.col}>

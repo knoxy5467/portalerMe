@@ -155,7 +155,12 @@ const MappingBar = () => {
   }, [size])
 
   useEffect(() => {
-    if (timeLeft && timeLeft !== oldTime.current && size !== 0 && size !== 4200) {
+    if (
+      timeLeft &&
+      timeLeft !== oldTime.current &&
+      size !== 0 &&
+      size !== 4200
+    ) {
       const newHours = Math.floor(timeLeft / 3600)
       const newMinutes = Math.floor((timeLeft - newHours * 3600) / 60)
 

@@ -2,7 +2,6 @@ import React from 'react'
 
 import { CssBaseline, ThemeProvider } from '@material-ui/core'
 
-import mistWalker from '../common/utils/mistWalker'
 import SideBar from '../Sidebar'
 import Footer from './Footer'
 import useGetConfig from './hooks/useGetConfig'
@@ -11,7 +10,6 @@ import useGetZones from './hooks/useGetZones'
 import useSetToken from './hooks/useSetToken'
 import MainLayout from './MainLayout'
 import MapArea from './MapArea'
-import MistBar from './MistBar'
 import Notifications from './Notifications'
 import styles from './styles.module.scss'
 import theme from './theme'
@@ -27,7 +25,6 @@ const App = () => {
       <CssBaseline />
       <div className={styles.appContainer}>
         <Notifications />
-        {mistWalker.isWalker && <MistBar />}
         <MainLayout>
           <SideBar />
           <MapArea />

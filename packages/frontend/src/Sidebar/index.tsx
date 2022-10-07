@@ -14,7 +14,6 @@ import SettingsIcon from '@material-ui/icons/Settings'
 
 import useToken from '../common/hooks/useToken'
 import { portalerSmall } from '../common/images'
-import mistWalker from '../common/utils/mistWalker'
 import LoginButton from '../LoginButton'
 import MapInfo from '../MapInfo'
 import TopWalkers from '../TopWalkers'
@@ -112,8 +111,7 @@ const SideBar = () => {
     paddingRight: sideBar ? 'inherit' : 0,
   })
 
-  return (!token && !mistWalker.isWalker) ||
-    (!token && mistWalker.isWalker && mistWalker.showSidebar) ? (
+  return (!token) ? (
     <LoginButton />
   ) : (
     <aside className={styles.searchSide}>

@@ -49,8 +49,9 @@ const fileGetter = async () => {
 ;(async () => {
   await getDb()
 
-  fileGetter()
+  await fileGetter()
 
   setInterval(fileGetter, timer)
+  redis.client.flushall()
   logger.info('ETL started')
 })()
