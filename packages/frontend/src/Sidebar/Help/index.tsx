@@ -97,7 +97,8 @@ const Help = () => (
     </div>
     <div className={styles.row}>
       <em>
-        Constant connections never deletes from map, used to connect cities with surround locs
+        Constant connections never deletes from map, used to connect cities with
+        surround locs
       </em>
     </div>
     <div className={styles.row}>

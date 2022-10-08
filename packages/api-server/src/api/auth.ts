@@ -11,7 +11,6 @@ import fetchUser from '../utils/discord/fetchUser'
 import fetchUserGuilds from '../utils/discord/fetchUserGuilds'
 import logger from '../utils/logger'
 
-
 const isProd = process.env.NODE_ENV === 'production'
 
 const router = Router()
