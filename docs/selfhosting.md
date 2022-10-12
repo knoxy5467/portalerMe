@@ -437,8 +437,8 @@ server {
   server_name YOURSUBDOMAIN.YOURDOMAIN;
 
   ssl_certificate         /etc/letsencrypt/live/YOURSUBDOMAIN.YOURDOMAIN/fullchain.pem;
-  ssl_certificate_key     /etc/letsencrypt/live/YOURSUBDOMAIN.YOURSUBDOMAIN/privkey.pem;
-  ssl_trusted_certificate /etc/letsencrypt/live/YOURSUBDOMAIN.YOURSUBDOMAIN/chain.pem;
+  ssl_certificate_key     /etc/letsencrypt/live/YOURSUBDOMAIN.YOURDOMAIN/privkey.pem;
+  ssl_trusted_certificate /etc/letsencrypt/live/YOURSUBDOMAIN.YOURDOMAIN/chain.pem;
 
   ssl_dhparam /etc/letsencrypt/dhparams/dhparam.pem;
 
