@@ -434,7 +434,7 @@ server {
   listen 443 ssl;
   listen [::]:443 ssl;
 
-  server_name YOURSUBDOMAIN.portaler.org;
+  server_name YOURSUBDOMAIN.YOURDOMAIN;
 
   ssl_certificate         /etc/letsencrypt/live/YOURSUBDOMAIN.YOURDOMAIN/fullchain.pem;
   ssl_certificate_key     /etc/letsencrypt/live/YOURSUBDOMAIN.YOURSUBDOMAIN/privkey.pem;
