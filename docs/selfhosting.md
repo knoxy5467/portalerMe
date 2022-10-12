@@ -464,11 +464,14 @@ server {
 }
 server {
   listen 80;
-  server_name YOURSUBDOMAIN.YOURSUBDOMAIN;
-  return 301 https://YOURSUBDOMAIN.YOURSUBDOMAIN$request_uri;
+  server_name YOURSUBDOMAIN.YOURDOMAIN;
+  return 301 https://YOURSUBDOMAIN.YOURDOMAIN$request_uri;
 }
 ```
-Also, you need to change discord redirect link in .env.example and in discord bot settings from **http://yoursubdomain.yourdomain:80/api/auth/callback** to **https://yoursubdomain.yourdomain:443/api/auth/callback**.
+Also, you need to change discord redirect link in .env.example and in discord bot settings from **http://yoursubdomain.yourdomain:80/api/auth/callback** to **https://yoursubdomain.yourdomain:443/api/auth/callback**. To apply changes from .env.example run:
+```Shell
+docker-compose up -d
+```
 
 Finally, we can restart nginx:
 
