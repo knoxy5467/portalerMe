@@ -224,12 +224,6 @@ const MappingBar = () => {
 
   const sizeError = getError('size', errors)
 
-const TextBox = () => {
-    return (
-      <div>
-        is this working
-      </div>)
-  }
 
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
@@ -263,7 +257,6 @@ const TextBox = () => {
           </FormLabel>
 
           <PortalSizeSelector size={portalSize} update={setPortalSize} />
-          <TextBox />
         </div>
         <div className={styles.row}>
           <FormControl fullWidth component="fieldset">
@@ -331,6 +324,10 @@ const TextBox = () => {
       </div>
     </form>
   )
+}
+
+const TextToPortal = () => {
+  const portalRegex = new RegExp('/([A-Z]{0,20})+([- ]{1})+([A-Z]{0,20})+((-| )+([A-Z]{0,20}))?/gi');
 }
 
 export default MappingBar
