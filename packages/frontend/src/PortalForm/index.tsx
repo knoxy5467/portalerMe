@@ -224,7 +224,7 @@ const MappingBar = () => {
 
   const sizeError = getError('size', errors)
 
-const textBox = () => {
+const TextBox = () => {
     return (
       <div>
         is this working
@@ -263,7 +263,7 @@ const textBox = () => {
           </FormLabel>
 
           <PortalSizeSelector size={portalSize} update={setPortalSize} />
-          <textBox />
+          <TextBox />
         </div>
         <div className={styles.row}>
           <FormControl fullWidth component="fieldset">
