@@ -224,6 +224,13 @@ const MappingBar = () => {
 
   const sizeError = getError('size', errors)
 
+const textBox = () => {
+    return (
+      <div>
+        is this working
+      </div>)
+  }
+
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       <div className={styles.mappingBar}>
@@ -256,6 +263,7 @@ const MappingBar = () => {
           </FormLabel>
 
           <PortalSizeSelector size={portalSize} update={setPortalSize} />
+          <textBox />
         </div>
         <div className={styles.row}>
           <FormControl fullWidth component="fieldset">
