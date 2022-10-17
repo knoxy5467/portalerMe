@@ -6,8 +6,6 @@ services:
     env_file:
       - .env.example
     restart: unless-stopped
-    ports:
-      - '5432:5432'
     volumes:
       - db_data:/var/lib/postgresql/data
     networks:
@@ -17,20 +15,6 @@ services:
     env_file:
       - .env.example
     restart: unless-stopped
-    ports:
-      - '6379:6379'
-    networks:
-      - portaler
-  discord_bot:
-    image: mawburn/portaler-bot:latest
-    env_file:
-      - .env.example
-    restart: unless-stopped
-    environment:
-      - API_URL=https://api_server/
-    depends_on:
-      - pgdb
-      - rediscache
     networks:
       - portaler
   api_server:
@@ -39,7 +23,7 @@ services:
       - .env.example
     restart: unless-stopped
     ports:
-      - '7777:4242'
+      - '127.0.0.1:7777:4242'
     depends_on:
       - pgdb
       - rediscache
